@@ -4,6 +4,7 @@ APP = sops64
 
 default: clean build all package
 
+.PHONY: build
 build:
 	mkdir -p build
 	go get -d

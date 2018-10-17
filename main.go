@@ -3,12 +3,13 @@ package main
 import (
 	"encoding/base64"
 	"fmt"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
 	"strings"
+
+	"gopkg.in/yaml.v2"
 )
 
 func main() {
@@ -54,7 +55,10 @@ func encrypt(file string, sopsArgs []string) string {
 		log.Fatalf("Unmarshal: %v", err)
 	}
 
-	c = b64enc(c)
+	switch data := c["data"].(type) {
+	case map[interface{}]interface{}:
+		c["data"] = b64dec(data)
+	}
 
 	content := getYaml(c)
 	tmpfile, err := ioutil.TempFile("", "sops64")
@@ -96,7 +100,10 @@ func decrypt(file string, sopsArgs []string) string {
 		os.Exit(1)
 	}
 
-	c = b64dec(c)
+	switch data := c["data"].(type) {
+	case map[interface{}]interface{}:
+		c["data"] = b64dec(data)
+	}
 
 	return getYaml(c)
 }
