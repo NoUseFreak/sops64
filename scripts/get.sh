@@ -11,8 +11,12 @@ get_latest_release() {
 }
 
 download() {
+  curl -Ls -o /tmp/$PROJECT.tar.gz https://github.com/NoUseFreak/$PROJECT/releases/download/$1/`uname`_amd64.tar.gz
+}
+
+extract() {
   rm -rf /usr/local/bin/$PROJECT
-  curl -Ls -o /usr/local/bin/$PROJECT https://github.com/NoUseFreak/$PROJECT/releases/download/$1/`uname`_amd64.tar.gz
+  tar -xf /tmp/$PROJECT.tar.gz -C /usr/local/bin/
 }
 
 echo "Looking up latest release"
@@ -21,7 +25,10 @@ RELEASE=$(get_latest_release $PROJECT)
 echo "Downloading package"
 $(download $RELEASE)
 
+echo "Extract package"
+$(extract)
+
 echo "Making executable"
-sudo chmod +x /usr/local/bin/$PROJECT
+chmod +x /usr/local/bin/$PROJECT
 
 echo "Installed $PROJECT in /usr/local/bin/$PROJECT"
