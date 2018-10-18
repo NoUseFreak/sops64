@@ -1,3 +1,6 @@
-key: a2V5MTIz
-jorn:
-  bla: am9ybi5ibGExMjM=
+apiVersion: v1
+data:
+    SOME_KEY: c29tZS1kYXRh
+kind: Secret
+metadata:
+    name: testing-sops64

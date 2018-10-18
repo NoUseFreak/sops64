@@ -57,7 +57,7 @@ func encrypt(file string, sopsArgs []string) string {
 
 	switch data := c["data"].(type) {
 	case map[interface{}]interface{}:
-		c["data"] = b64dec(data)
+		c["data"] = b64enc(data)
 	}
 
 	content := getYaml(c)

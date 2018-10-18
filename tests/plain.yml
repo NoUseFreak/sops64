@@ -1,6 +1,6 @@
-key: key123
-dries:
-  bla: dries.bla123
-some_long_key: |
-  some multiline
-  data
+apiVersion: v1
+data:
+    SOME_KEY: some-data
+kind: Secret
+metadata:
+    name: testing-sops64

@@ -52,9 +52,9 @@ test_sops: test_clean
 
 test_sops64: test_clean
 	@echo "Testing sops64"
-	@go run main.go --encrypt tests/plain.yml > tests/tmp.yml
-	@go run main.go --decrypt tests/tmp.yml > tests/tmp_out.yml
-	@bash -c 'diff -EbwB <(sort tests/plain.yml) <(sort tests/tmp_out.yml)'
+	@go run main.go --encrypt tests/plain.yml > tests/tmp_sops.yml
+	@sops --decrypt tests/tmp_sops.yml > tests/tmp.yml
+	@bash -c 'diff -EbwB <(sort tests/tmp.yml) <(sort tests/base64.yml)'
 	
 	@go run main.go -e tests/plain.yml > tests/tmp.yml
 	@go run main.go -d tests/tmp.yml > tests/tmp_out.yml
