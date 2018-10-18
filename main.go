@@ -14,6 +14,10 @@ import (
 
 func main() {
 
+	if len(os.Args) < 2 {
+		log.Fatal("Need more arguments")
+	}
+
 	args := os.Args[1 : len(os.Args)-1]
 	file := os.Args[len(os.Args)-1]
 
