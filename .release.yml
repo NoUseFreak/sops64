@@ -1,18 +1,18 @@
 letitgo:
   name: sops64
   description: SSH wrapper for aws to make your life easier.
+  actions:
+    - type: changelog
+      file: CHANGELOG.md
 
-changelog:
-  - file: CHANGELOG.md
+    - type: githubrelease
+      assets:
+        - ./build/pkg/*
 
-githubrelease:
-  - assets:
-      - ./build/pkg/*
-
-homebrew:
-  - homepage: https://github.com/NoUseFreak/sops64
-    url: https://github.com/NoUseFreak/sops64/releases/download/{{ .Version }}/darwin_amd64.zip
-    version: "{{ .Version }}"
-    tap:
-      url: git@github.com:NoUseFreak/homebrew-brew.git
-    test: system "#{bin}/{{ .Name }} -h"
+    - type: homebrew
+      homepage: https://github.com/NoUseFreak/sops64
+      url: https://github.com/NoUseFreak/sops64/releases/download/{{ .Version }}/darwin_amd64.zip
+      version: "{{ .Version }}"
+      tap:
+        url: git@github.com:NoUseFreak/homebrew-brew.git
+      test: system "#{bin}/{{ .Name }} -h"
