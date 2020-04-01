@@ -1,6 +1,6 @@
 letitgo:
   name: sops64
-  description: SSH wrapper for aws to make your life easier.
+  description: Sops wrapper that does base64 encoding and decoding for you.
   actions:
     - type: changelog
       file: CHANGELOG.md
