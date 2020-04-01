@@ -18,7 +18,13 @@ sops64 --decrypt tests/sops.yml
 Download the latest [release](https://github.com/NoUseFreak/sawsh/releases).
 
 ```bash
-curl -sL http://bit.ly/get-sops64 | bash
+brew install nousefreak/brew/sops64
+```
+
+or
+
+```bash
+curl -sL http://bit.ly/gh-get | PROJECT=NoUseFreak/sops64 bash
 ```
 
 ### Build from source
